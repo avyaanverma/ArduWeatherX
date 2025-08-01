@@ -2,7 +2,7 @@
 
 ## Overview
 
-ArduWeatherX is a comprehensive, scalable, and cost-effective IoT weather monitoring solution. It integrates a real Arduino sensor, cloud-native backend, real-time database, and interactive web dashboard to deliver up-to-the-second weather data. Designed as a robust template, it is suitable for smart agriculture, home automation, environmental studies, and other real-world applications requiring reliable weather insights.
+ArduWeatherX is a comprehensive, scalable, and cost-effective IoT weather monitoring solution. It integrates a real Arduino sensor, backend, real-time database, and interactive web dashboard to deliver up-to-the-second weather data. Designed as a robust template, it is suitable for smart agriculture, home automation, environmental studies, and other real-world applications requiring reliable weather insights.
 
 ## Table of Contents
 
@@ -23,7 +23,7 @@ ArduWeatherX is a comprehensive, scalable, and cost-effective IoT weather monito
        Utilizes the Arduino circuit to simulate a DHT11 temperature and humidity sensor, providing a continuous, realistic stream of data for development and testing without requiring physical hardware. The simulation includes a 5% chance of generating invalid readings to allow for robust error-handling development.
 
 - **Scalable Serverless Backend:**  
-       Transitions seamlessly from a local Flask server for rapid development to a highly scalable, event-driven AWS Lambda backend for production. This serverless architecture ensures high availability and cost efficiency through a pay-per-use model.
+       Transitions seamlessly from a local Flask server for rapid development. Cloud deployment will be added in future work.
 
 - **Persistent Cloud Storage:**  
        Leverages Firebase Realtime Database for low-latency, persistent storage of all incoming sensor data. The data is structured and indexed by timestamp for efficient querying and real-time synchronization with the frontend.
@@ -32,26 +32,25 @@ ArduWeatherX is a comprehensive, scalable, and cost-effective IoT weather monito
        A modern, responsive frontend built with React and Vite, providing a real-time visualization of temperature and humidity data. The dashboard updates automatically as new data arrives in Firebase, without requiring page reloads.
 
 - **Secure & Efficient Delivery:**  
-       In the production environment, the frontend is deployed to Amazon S3 and served globally via the AWS CloudFront Content Delivery Network (CDN). This ensures low latency for users worldwide and a secure connection via HTTPS.
+       In the production environment, the frontend will be deployed to Amazon S3 and served globally via the AWS CloudFront Content Delivery Network (CDN) in future work.
 
 - **Automated CI/CD Pipeline:**  
-       Features a complete Continuous Integration and Continuous Deployment (CI/CD) pipeline using AWS CodePipeline. This pipeline automates the build, test, and deployment process for both the backend Lambda function and the frontend React application, ensuring rapid and reliable updates.
+       Features a complete Continuous Integration and Continuous Deployment (CI/CD) pipeline using AWS CodePipeline. This pipeline will automate the build, test, and deployment process for both the backend Lambda function and the frontend React application in future work.
 
 ## Architecture 
 
 The system architecture consists of the following components:
 
 - **IoT Device Simulation:** Wokwi simulates the DHT11 sensor, sending data to the backend.
-- **Backend:** Flask (local) or AWS Lambda (production) receives, validates, and processes sensor data.
+- **Backend:** Flask (local) receives, validates, and processes sensor data. Cloud deployment will be added in future work.
 - **Database:** Firebase Realtime Database stores sensor readings, indexed by timestamp.
 - **Frontend:** React dashboard visualizes real-time data and provides user interaction.
-- **Cloud Infrastructure:** AWS S3, CloudFront, API Gateway, and CodePipeline manage hosting, delivery, and CI/CD.
+- **Cloud Infrastructure:** AWS S3, CloudFront, API Gateway, and CodePipeline will manage hosting, delivery, and CI/CD in future work.
 
 <img src="./images/architecture.png" alt="Architecture">
 
 ## Dashboard Preview
-
-*Coming soon: Screenshots and GIFs of the live dashboard.*
+<img src="./images/dashboard.png" alt="Dashboard Preview" width="850" height="500">
 
 ## Arduino Connection Design
 
@@ -76,8 +75,6 @@ The project utilizes a modern, robust technology stack chosen to support real-ti
 | Backend         | Python, Flask, AWS Lambda                              | Data ingestion, validation, and processing. Flask for local dev, Lambda for production.   |
 | Database        | Firebase Realtime DB                                   | NoSQL, real-time, persistent cloud storage for sensor data.                               |
 | IoT Simulation  | Wokwi (Arduino C++)                                    | Simulating a DHT11 sensor to generate temperature/humidity data.                          |
-| Cloud & DevOps  | AWS (S3, CloudFront, API Gateway, Lambda, CodePipeline)| Hosting, deployment, CI/CD, and serverless infrastructure.                                |
-| Tooling         | Node.js, ESLint, Git, Terraform                        | Frontend runtime, code linting, version control, Infrastructure as Code.                  |
 
 ## Getting Started
 
