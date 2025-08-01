@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArduWeatherX - IoT Data Pipeline Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 40vh;
+        }
+        .flow-arrow {
+            font-size: 2.5rem;
+            color: #665191;
+            align-self: center;
+            margin: 0 1rem;
+        }
+        .flow-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .flow-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-gray-50" style="background-color: #f0f2f5;">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold mb-2" style="color: #003f5c;">ArduWeatherX</h1>
+            <p class="text-lg md:text-xl text-gray-600" style="color: #2f4b7c;">An Interactive Look at the IoT Data Pipeline</p>
+        </header>
+
+        <main>
+            <section id="flow" class="mb-16">
+                <h2 class="text-3xl font-bold text-center mb-8" style="color: #003f5c;">The Journey of a Data Point</h2>
+                <p class="max-w-3xl mx-auto text-center text-gray-700 mb-12">
+                    This diagram illustrates the complete, end-to-end flow of data within the ArduWeatherX ecosystem. Follow along to see how a simple temperature reading travels from a simulated sensor all the way to a real-time, interactive user dashboard.
+                </p>
+
+                <div class="flex flex-col lg:flex-row items-center justify-center flex-wrap gap-4">
+                    <div class="flow-card text-center p-6 bg-white rounded-xl shadow-lg w-64 h-48 flex flex-col justify-center items-center">
+                        <div class="text-4xl mb-2">☁️</div>
+                        <h3 class="text-xl font-semibold" style="color: #665191;">1. Wokwi Simulator</h3>
+                        <p class="text-sm text-gray-600">Data generation starts here.</p>
+                    </div>
+
+                    <div class="flow-arrow transform rotate-90 lg:rotate-0">→</div>
+
+                    <div class="flow-card text-center p-6 bg-white rounded-xl shadow-lg w-64 h-48 flex flex-col justify-center items-center">
+                        <div class="text-4xl mb-2">🔗</div>
+                        <h3 class="text-xl font-semibold" style="color: #a05195;">2. Ngrok Tunnel</h3>
+                        <p class="text-sm text-gray-600">Exposes local server to the web.</p>
+                    </div>
+
+                    <div class="flow-arrow transform rotate-90 lg:rotate-0">→</div>
+
+                    <div class="flow-card text-center p-6 bg-white rounded-xl shadow-lg w-64 h-48 flex flex-col justify-center items-center">
+                        <div class="text-4xl mb-2">💻</div>
+                        <h3 class="text-xl font-semibold" style="color: #d45087;">3. Flask API</h3>
+                        <p class="text-sm text-gray-600">Receives and processes data.</p>
+                    </div>
+                    
+                    <div class="flow-arrow transform rotate-90 lg:rotate-0">→</div>
+
+                    <div class="flow-card text-center p-6 bg-white rounded-xl shadow-lg w-64 h-48 flex flex-col justify-center items-center">
+                        <div class="text-4xl mb-2">🗃️</div>
+                        <h3 class="text-xl font-semibold" style="color: #f95d6a;">4. Firebase DB</h3>
+                        <p class="text-sm text-gray-600">Stores data in the cloud.</p>
+                    </div>
+
+                    <div class="flow-arrow transform rotate-90 lg:rotate-0">→</div>
+
+                    <div class="flow-card text-center p-6 bg-white rounded-xl shadow-lg w-64 h-48 flex flex-col justify-center items-center">
+                        <div class="text-4xl mb-2">📊</div>
+                        <h3 class="text-xl font-semibold" style="color: #ff7c43;">5. React Dashboard</h3>
+                        <p class="text-sm text-gray-600">Visualizes data for the user.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="components" class="mb-16">
+                <h2 class="text-3xl font-bold text-center mb-10" style="color: #003f5c;">Component Deep Dive</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold mb-3" style="color: #2f4b7c;">Data Source & Local Dev</h3>
+                        <p class="text-gray-700 mb-4">
+                            The process begins in a controlled environment. The <strong style="color: #665191;">Wokwi Simulator</strong> mimics a real-world IoT device, generating sensor data. To bridge the gap between the cloud-based simulator and a local machine, <strong style="color: #a05195;">Ngrok</strong> creates a secure public URL that tunnels directly to the developer's machine.
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold mb-3" style="color: #2f4b7c;">Backend Processing</h3>
+                        <p class="text-gray-700 mb-4">
+                            The <strong style="color: #d45087;">Flask API</strong>, running locally in VS Code, acts as the system's central nervous system. It listens for incoming data from the Ngrok tunnel, validates it, and then securely transmits it to the cloud database for persistent storage.
+                        </p>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md p-6 md:col-span-2 lg:col-span-1">
+                        <h3 class="text-xl font-bold mb-3" style="color: #2f4b7c;">Cloud & Frontend</h3>
+                        <p class="text-gray-700 mb-4">
+                            <strong style="color: #f95d6a;">Firebase Realtime Database</strong> serves as a flexible, scalable, and real-time data store. The <strong style="color: #ff7c43;">React Dashboard</strong> subscribes to this database. This direct connection allows for instantaneous updates on the user's screen whenever new data is saved, creating a seamless and dynamic user experience.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="tech-stack" class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                 <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-2xl font-bold text-center mb-6" style="color: #003f5c;">Technology Stack</h2>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead class="bg-gray-100">
+                                <tr>
+                                    <th class="p-3 font-semibold" style="color: #2f4b7c;">Category</th>
+                                    <th class="p-3 font-semibold" style="color: #2f4b7c;">Technology</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b">
+                                    <td class="p-3 font-medium">IoT Simulation</td>
+                                    <td class="p-3">Wokwi</td>
+                                </tr>
+                                <tr class="border-b">
+                                    <td class="p-3 font-medium">Local Tunneling</td>
+                                    <td class="p-3">Ngrok</td>
+                                </tr>
+                                <tr class="border-b">
+                                    <td class="p-3 font-medium">Backend API</td>
+                                    <td class="p-3">Python (Flask)</td>
+                                </tr>
+                                <tr class="border-b">
+                                    <td class="p-3 font-medium">Database</td>
+                                    <td class="p-3">Firebase Realtime DB</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-medium">Frontend</td>
+                                    <td class="p-3">React</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6 flex flex-col justify-center">
+                    <h2 class="text-2xl font-bold text-center mb-4" style="color: #003f5c;">Tech Stack Distribution</h2>
+                    <p class="text-center text-gray-600 mb-4">A conceptual breakdown of the technologies involved in the project, highlighting the balance between different components.</p>
+                    <div class="chart-container">
+                        <canvas id="techStackChart"></canvas>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-center mt-16 text-gray-500 text-sm">
+            <p>Infographic generated to visualize the ArduWeatherX project architecture.</p>
+        </footer>
+    </div>
+
+    <script>
+        function wrapText(str, maxWidth) {
+            if (str.length <= maxWidth) {
+                return str;
+            }
+            const words = str.split(' ');
+            let lines = [];
+            let currentLine = words[0];
+            for (let i = 1; i < words.length; i++) {
+                if (currentLine.length + words[i].length + 1 < maxWidth) {
+                    currentLine += ' ' + words[i];
+                } else {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        const ctx = document.getElementById('techStackChart').getContext('2d');
+        const techStackChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Frontend (React)', 'Backend (Python/Flask)', 'Cloud Services (Firebase)', 'Simulation & Tooling'],
+                datasets: [{
+                    label: 'Tech Distribution',
+                    data: [35, 25, 25, 15],
+                    backgroundColor: [
+                        '#ff7c43',
+                        '#d45087',
+                        '#f95d6a',
+                        '#a05195',
+                    ],
+                    borderColor: '#ffffff',
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: '#2f4b7c',
+                            font: {
+                                size: 14
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                  return label.join(' ');
+                                } else {
+                                  return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
